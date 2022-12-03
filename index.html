@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Test</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        .child {
+            padding: 3px;
+            font-weight: bold;
+            width: 150px;
+            height: 30px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            background-color: bisque;
+        }
+
+        .shape {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="john">
+        <input id="name" />
+        <div class="child important">john: important</div>
+        <div class="child not-important">john: not-important</div>
+        <div class="child important">john: important</div>
+    </div>
+    <div class="child important">Other: important</div>
+
+
+    <script>
+        const parent = document.getElementById('john');
+        const element = document.getElementById('name');
+        const importants = parent.getElementsByClassName('important');
+        console.log(parent, importants)
+
+        element.addEventListener('focusin', (event) => {
+            event.target.style.background = 'pink';
+            for (const important of importants){
+                important.classList.add("shape");
+            }
+        });
+
+        element.addEventListener('focusout', (event) => {
+            event.target.style.background = '';
+            for (const important of importants){
+                important.classList.remove("shape");
+            }
+        });
+    </script>
+</body>
+</html>
